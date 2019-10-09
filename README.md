@@ -54,9 +54,7 @@ $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
 fastTextのインストールはすごく楽。
 
 ```
-$ git clone https://github.com/facebookresearch/fastText.git
-$ cd fastText
-$ make
+$pip install fasttext
 ```
 
 インストール後の一応動作の確認。ヘルプ表示。
