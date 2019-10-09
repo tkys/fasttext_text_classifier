@@ -51,10 +51,16 @@ $ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
 --------
 ### fasttextの環境構築
 
-fastTextのインストールはすごく楽。
+fastTextのインストールは通常`pip install fasttext `。すごく楽。
+ただし今回はオートチューニングを使いたいので、最新リポジトリからもってきてインストール。
 
 ```
-$pip install fasttext
+autotune is a new feature that is not included in the last release (0.9.1). You should install the "dev" version, that is, clone the repo
+
+$ git clone https://github.com/facebookresearch/fastText.git
+$ cd fastText
+$ pip install .
+
 ```
 
 
