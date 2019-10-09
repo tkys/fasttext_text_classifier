@@ -1,12 +1,98 @@
 # fasttext_text_classifier
 
+ Ubuntu 18.04 LTS
+* Python 3
+* MeCab
+* mecab-python3
+* mecab-ipadic-NEologd (MeCabの新語辞書)
+* fasttext
+
+
+
+### MeCab関連の環境構築
+
+mecabインストール、neologd辞書の用意、ipadicとか
+
+```
+$ sudo apt-get install mecab libmecab-dev mecab-ipadic-utf8 git make curl xz-utils file
+
+$ pip3 install mecab-python3
+```
+
+
+## mecab-ipadic-NEologd：MeCabの新語辞書　mecab-ipadic-NEologdのインストール/更新方法
+
+辞書のシードデータは、GitHubリポジトリを介して配布されます。
+
+「git clone」し複製されたリポジトリのディレクトリに移動、
+次のコマンドで、最近のmecab-ipadic-NEologdをインストールまたは更新（上書き）できます。
+
+```
+$ git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
+$ cd mecab-ipadic-neologd
+$ ./bin/install-mecab-ipadic-neologd -n
+```
+途中のメッセージからmecab-configをインストールした場合は、使用するmecab-configのパスを設定する必要があります。
+
+
+次のヘルプコマンドにてコマンドラインオプションを確認できます。
+
+```
+$ ./bin/install-mecab-ipadic-neologd -h
+```
+
+### neologd辞書の場所を確認
+```
+$ echo `mecab-config --dicdir`"/mecab-ipadic-neologd"
+
+/usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd
+```
+
+--------
+### fasttextの環境構築
+
+fastTextのインストールはすごく楽。
+
+```
+$ git clone https://github.com/facebookresearch/fastText.git
+$ cd fastText
+$ make
+```
+
+インストール後の一応動作の確認。ヘルプ表示。
+
+```
+$ ./fasttext
+usage: fasttext <command> <args>
+
+The commands supported by fasttext are:
+
+  supervised              train a supervised classifier
+  quantize                quantize a model to reduce the memory usage
+  test                    evaluate a supervised classifier
+  test-label              print labels with precision and recall scores
+  predict                 predict most likely labels
+  predict-prob            predict most likely labels with probabilities
+  skipgram                train a skipgram model
+  cbow                    train a cbow model
+  print-word-vectors      print word vectors given a trained model
+  print-sentence-vectors  print sentence vectors given a trained model
+  print-ngrams            print ngrams given a trained model and word
+  nn                      query for nearest neighbors
+  analogies               query for analogies
+  dump                    dump arguments,dictionary,input/output vectors
+
+```
+
+
+--------
 ## fasttext用の学習用データの作成
 
 ### インプットデータ用意
 
 1行に　{label},{text}　の形式で用意します
 
-*input.txt
+* input.txt
 ```
 1、変換時に、Stop Wordの処理をしたりしますが、まずはStop Word無しで学習させてみます。
 3,fastTextでクラス分けをする際の教師データは、下記のようなフォーマットなのでcsvから変換します。
@@ -73,3 +159,9 @@ def convert2fasttext(bunrui):
     return labels[bunrui]
 ```
 ここではinput.csvの要素1列目の{label}が　1,2,3　でラベルしてあるケースとしています
+
+
+--------
+
+
+
