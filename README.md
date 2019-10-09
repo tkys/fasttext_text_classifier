@@ -57,30 +57,6 @@ fastTextのインストールはすごく楽。
 $pip install fasttext
 ```
 
-インストール後の一応動作の確認。ヘルプ表示。
-
-```
-$ ./fasttext
-usage: fasttext <command> <args>
-
-The commands supported by fasttext are:
-
-  supervised              train a supervised classifier
-  quantize                quantize a model to reduce the memory usage
-  test                    evaluate a supervised classifier
-  test-label              print labels with precision and recall scores
-  predict                 predict most likely labels
-  predict-prob            predict most likely labels with probabilities
-  skipgram                train a skipgram model
-  cbow                    train a cbow model
-  print-word-vectors      print word vectors given a trained model
-  print-sentence-vectors  print sentence vectors given a trained model
-  print-ngrams            print ngrams given a trained model and word
-  nn                      query for nearest neighbors
-  analogies               query for analogies
-  dump                    dump arguments,dictionary,input/output vectors
-
-```
 
 
 --------
